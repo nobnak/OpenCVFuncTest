@@ -9,16 +9,16 @@ int main(int argc, char * argv[])
 #endif
 {
 	cv::ocl::DevicesInfo devices;
-	cv::ocl::getOpenCLDevices(devices, cv::ocl::CVCL_DEVICE_TYPE_CPU);
+	cv::ocl::getOpenCLDevices(devices, cv::ocl::CVCL_DEVICE_TYPE_GPU);
 
 #define FARNEBACK
     
 #ifdef FARNEBACK
 	cv::ocl::FarnebackOpticalFlow flow;
-    flow.numLevels = 5;
+    flow.numLevels = 4;
     flow.pyrScale = 0.5;
     flow.fastPyramids = true;
-    flow.winSize = 30;
+    flow.winSize = 15;
     flow.numIters = 10;
     flow.polyN = 5;
     flow.polySigma = 1.1;
@@ -32,7 +32,7 @@ int main(int argc, char * argv[])
     flow.minEigThreshold = 0.001f;
     flow.getMinEigenVals = false;
 #endif
-    int resizeFactor = 4;
+    int resizeFactor = 2;
 
 	cv::VideoCapture capture(0);
 	cv::Mat src0, src1;
